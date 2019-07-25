@@ -10,7 +10,7 @@ class VideoDetail extends Component {
 
     const videoId = `https://www.youtube.com/embed/${video.id.videoId}`;
     console.log(videoId);
-    
+
     return (
       <div>
         <Embed>
