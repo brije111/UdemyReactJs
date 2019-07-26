@@ -1,25 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { List } from "semantic-ui-react";
+import { List, Button } from "semantic-ui-react";
+import { selectSong } from "../actions";
 
 class SongList extends Component {
   renderList() {
     return this.props.songs.map(item => {
       return (
-        <List.Item>
-          <List.Content>
-            <List.Header>{item.title}</List.Header>
+        <List.Item key={item.title}>
+          <List.Content floated="right">
+            <Button primary onClick={() => this.props.selectSong(item)}>
+              Select
+            </Button>
           </List.Content>
+          <List.Content>{item.title}</List.Content>
         </List.Item>
       );
     });
   }
 
   render() {
-    console.log(this.props.songs);
     return (
       <div>
-        <List>{this.renderList()}</List>
+        <List divided relaxed>
+          {this.renderList()}
+        </List>
       </div>
     );
   }
@@ -29,4 +34,7 @@ const mapStateToProp = state => {
   return { songs: state.songs };
 };
 
-export default connect(mapStateToProp)(SongList);
+export default connect(
+  mapStateToProp,
+  { selectSong }
+)(SongList);
