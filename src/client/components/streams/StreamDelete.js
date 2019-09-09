@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import ModalComponent from '../ModalComponent';
+import {deleteStream} from '../../actions';
+import { connect } from 'react-redux';
+import history from '../../history';
 
-export default class StreamDelete extends Component {
+class StreamDelete extends Component {
     onPositiveButtonClicked = () => {
-        console.log('positive button clicked');
-
+        this.props.deleteStream(this.props.match.params.id);
+        history.push('/')
     }
     onNegativeButtonClicked = () => {
         console.log('nagative button clicked');
-
+        history.push('/');
     }
     render() {
         return (
@@ -25,3 +28,4 @@ export default class StreamDelete extends Component {
         )
     }
 }
+export default connect(null, { deleteStream })(StreamDelete);

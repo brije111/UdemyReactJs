@@ -35,7 +35,10 @@ class StreamList extends Component {
         return this.props.streams.map(item => {
             return <List.Item key={item.id}>
                 {this.renderAdmin(item)}
-                <List.Header>{item.title}</List.Header>
+                <List.Header>
+                    <Link to={`show/${item.id}`}>
+                        {item.title}
+                    </Link></List.Header>
                 <List.Content>
                     <List.Description>
                         {item.description}
